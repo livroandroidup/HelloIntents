@@ -8,7 +8,7 @@ import android.view.View;
 
 
 /**
- * Main
+ * Main.
  */
 public class MainActivity extends ActionBarActivity {
 
