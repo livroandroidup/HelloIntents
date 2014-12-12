@@ -9,5 +9,6 @@
     <string name="abrir_site">Abrir Site</string>
     <string name="abrir_mapas">Abrir Mapas</string>
     <string name="abrir_contatos">Abrir Contatos</string>
+    <string name="scan">Scan</string>
 
 </resources>

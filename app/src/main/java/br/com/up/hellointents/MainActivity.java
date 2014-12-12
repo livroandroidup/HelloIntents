@@ -1,10 +1,13 @@
 package br.com.up.hellointents;
 
+import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
+import android.widget.Toast;
 
 
 /**
@@ -59,5 +62,31 @@ public class MainActivity extends ActionBarActivity {
                     startActivity(i);
                 }
             });
+
+            findViewById(R.id.btScan).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        Intent intent = new Intent("com.google.zxing.client.android.SCAN");
+                        intent.putExtra("SCAN_MODE","QR_CODE_MODE");
+                        startActivityForResult(intent, 1);
+                    } catch (ActivityNotFoundException e) {
+                        Toast.makeText(getBaseContext(),"Instale o barcode reader", Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+
+
+        }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode == Activity.RESULT_OK && requestCode == 1) {
+            String result = data.getStringExtra("SCAN_RESULT");
+
+            Toast.makeText(this,"Scan: " + result, Toast.LENGTH_LONG).show();
         }
     }
+}
